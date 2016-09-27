@@ -3,6 +3,10 @@
 
 #include "OptionParser.h"
 
+#include <vector>
+
+using namespace std;
+
 class CommandLineParser:public OptionParser
 {
 public:

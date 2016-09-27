@@ -1,7 +1,11 @@
 #ifndef _PROGRAM_OPTIONS_H
 #define _PROGRAM_OPTIONS_H
 
-#include "Common.h"
+#include <string>
+#include <map>
+#include <iostream>
+
+using namespace std;
 
 class ProgramOptions
 {

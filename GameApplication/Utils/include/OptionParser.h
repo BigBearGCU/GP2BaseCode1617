@@ -1,7 +1,6 @@
 #ifndef _OPTION_PARSER_H
 #define _OPTION_PARSER_H
 
-#include "Common.h"
 #include "ProgramOptions.h"
 
 class OptionParser

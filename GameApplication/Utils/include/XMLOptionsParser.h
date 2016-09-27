@@ -1,8 +1,11 @@
 #ifndef _XML_OPTIONS_PARSER_H
 #define _XML_OPTIONS_PARSER_H
 
-#include "Common.h"
 #include "OptionParser.h"
+
+#include <string>
+
+using namespace std;
 
 class XMLOptionsParser:public OptionParser
 {

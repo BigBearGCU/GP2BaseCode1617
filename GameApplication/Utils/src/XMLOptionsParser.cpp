@@ -1,6 +1,6 @@
 #include "XMLOptionsParser.h"
 #include "tinyxml2.h"
-#include "utils/Log.h"
+#include "Log.h"
 
 using namespace tinyxml2;
 

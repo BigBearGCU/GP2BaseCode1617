@@ -1,5 +1,5 @@
-#include "utils/Log.h"
-#include "utils/time.h"
+#include "Log.h"
+#include "clock.h"
 
 //enumeration types (both scoped and unscoped) can have overloaded operators
 ostream& operator<<(std::ostream& os, LogLevel level)

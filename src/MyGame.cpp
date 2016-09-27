@@ -10,8 +10,3 @@ MyGame::~MyGame()
 {
 
 }
-
-void MyGame::initScene()
-{
-	GameApplication::initScene();
-}

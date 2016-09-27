@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
 <App>
     <!-- Settings for MyApp -->
-    <Window Title="GP2" Width="640" Height="480" />
+    <Window Title="GP2" Width="1280" Height="1080" />
 </App>

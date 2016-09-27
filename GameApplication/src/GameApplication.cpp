@@ -1,36 +1,17 @@
 #include "GameApplication.h"
-#include "utils/Log.h"
 
 GameApplication::GameApplication()
 {
- 	m_pWindow=nullptr;
-	m_WindowWidth=640;
-	m_WindowHeight=480;
-	m_WindowCreationFlags=0;
-  CREATELOG("log.txt");
+	CREATELOG("log.txt");
+	m_WindowWidth = 640;
+	m_WindowHeight = 480;
+	m_WindowCreationFlags = 0;
+	m_WindowTitle = "Game";
 }
 
 GameApplication::~GameApplication()
 {
   CLOSELOG();
-	destroy();
-}
-
-void GameApplication::createWindow(const string& windowTitle,const unsigned int width, const unsigned int height, const unsigned int windowFlags)
-{
-  LOG(INFO,"Window Created %s Width -%d Height -%d",windowTitle.c_str(),width,height);
-	//Create a window
-	m_pWindow = SDL_CreateWindow(
-		windowTitle.c_str(),             // window title
-		SDL_WINDOWPOS_CENTERED,     // x position, centered
-		SDL_WINDOWPOS_CENTERED,     // y position, centered
-		width,                        // width, in pixels
-		height,                        // height, in pixels
-		windowFlags           // flags
-		);
-
-		m_WindowWidth=width;
-		m_WindowHeight=height;
 }
 
 void GameApplication::parseConfig(int args,char * arg[])
@@ -49,91 +30,24 @@ void GameApplication::parseConfig(int args,char * arg[])
   commandLineParser.parse(m_Options);
   ss<<m_Options;
   LOG(INFO,"Command Line Parsed\n%s",ss.str().c_str());
+  ss.str( std::string());
+  ss.clear();
 }
 
 
 bool GameApplication::init(int args,char * arg[])
 {
-  parseConfig(args,arg);
-	//ChangeWorkingDirectory();
-	//Controls the game loop
-	m_bIsRunning = true;
+	parseConfig(args,arg);
 
-	// init everyting - SDL, if it is nonzero we have a problem
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-	{
-		//std::cout << "ERROR SDL_Init " << SDL_GetError() << std::endl;
-    LOG(ERROR,"SDL can't be initialised %s",SDL_GetError());
-		return false;
-	}
+	m_WindowWidth = m_Options.getOptionAsInt("WindowWidth");
+	m_WindowHeight = m_Options.getOptionAsInt("WindowHeight");
+	m_WindowTitle = m_Options.getOption("WindowTitle");
 
-	//Initialise SDL Image
-	int	imageInitFlags = IMG_INIT_JPG | IMG_INIT_PNG;
-	int	returnInitFlags = IMG_Init(imageInitFlags);
-	if (((returnInitFlags)&	(imageInitFlags)) != imageInitFlags)	{
-    LOG(ERROR,"SDL Image Can't be Initialised %s",IMG_GetError());
-		return false;
-	}
-
-	//Initialise SDL TTF
-	if (TTF_Init() == -1)	{
-    LOG(ERROR,"SDL TTF Can't be Initialised %s",TTF_GetError());
-		return false;
-	}
-  m_WindowWidth=m_Options.getOptionAsInt("WindowWidth");
-  m_WindowHeight=m_Options.getOptionAsInt("WindowHeight");
-	createWindow(m_Options.getOption("WindowTitle"),m_WindowWidth,m_WindowHeight,m_WindowCreationFlags);
-	//Init Scene
-	initScene();
 	return true;
 }
 
-void GameApplication::initScene()
-{
-}
-
-void GameApplication::update()
-{
-
-}
-
-void GameApplication::render()
-{
-}
-
-void GameApplication::onRenderGUI()
-{
-
-}
-
-void GameApplication::destroy()
-{
-	// clean up, reverse order!!!
-	SDL_DestroyWindow(m_pWindow);
-	IMG_Quit();
-	TTF_Quit();
-	SDL_Quit();
-}
 
 void GameApplication::run()
 {
-	SDL_Event event;
-	//Game Loop
-	while (m_bIsRunning)
-	{
-		//While we still have events in the queue
-		while (SDL_PollEvent(&event)) {
-			//Get event type
-			if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
-				//set our boolean which controls the loop to false
-				m_bIsRunning = false;
-			}
-		}
-		//init Scene
-		update();
-		//render
-		render();
-		//Call swap so that our GL back buffer is displayed
 
-	}
 }
