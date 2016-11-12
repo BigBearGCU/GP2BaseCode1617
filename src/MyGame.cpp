@@ -17,7 +17,7 @@ MyGame::~MyGame()
 
 void MyGame::initScene()
 {
-	string modelPath = ASSET_PATH + MODEL_PATH + "/Earth.fbx";
+	string modelPath = ASSET_PATH + MODEL_PATH + "/MultiplayerArena.fbx";
 
 	string vsParallaxFilename = ASSET_PATH + SHADER_PATH + "/parallaxMappingVS.glsl";
 	string fsParallaxFilename = ASSET_PATH + SHADER_PATH + "/parallaxMappingFS.glsl";
@@ -37,26 +37,7 @@ void MyGame::initScene()
 	testGO->loadSpecularTexture(specularTexturePath);
 	testGO->loadNormalTexture(normalTexturePath);
 	testGO->loadHeightTexture(heightTexturePath);
-	testGO->setPosition(vec3(6.0f,0.0f,0.0f));
 	m_GameObjectList.push_back(testGO);
-	addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
-
-	testGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
-	testGO->loadShaders(vsBumpFilename, fsBumpFilename);
-	testGO->loadDiffuseTexture(diffuseTexturePath);
-	testGO->loadSpecularTexture(specularTexturePath);
-	testGO->loadNormalTexture(normalTexturePath);
-	testGO->setPosition(vec3(0.0f,0.0f,0.0f));
-	m_GameObjectList.push_back(testGO);
-	addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
-
-	testGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
-	testGO->loadShaders(vsTextureFilename, fsTextureFilename);
-	testGO->loadDiffuseTexture(diffuseTexturePath);
-	testGO->loadSpecularTexture(specularTexturePath);
-	testGO->setPosition(vec3(-6.0f,0.0f,0.0f));
-	m_GameObjectList.push_back(testGO);
-	addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
 
 	m_CameraPosition = vec3(0.0f, 0.0f, 20.0f);
 
