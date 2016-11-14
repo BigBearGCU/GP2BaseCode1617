@@ -16,7 +16,6 @@ GameObject * loadModelFromFile(const string & filename)
 
 		vector<int> indices;
 		vector<Vertex> verts;
-		int texCoordIndex = 0;
 
 		for (int f = 0; f < mesh->mNumFaces; f++)
 		{
@@ -32,23 +31,19 @@ GameObject * loadModelFromFile(const string & filename)
 		{
 			aiVector3D position = mesh->mVertices[v];
 			aiVector3D normal = mesh->mNormals[v];
-			for (int t = 0; t < mesh->GetNumUVChannels(); t++)
-			{
-				if (mesh->HasTextureCoords(t))
-				{
-					texCoordIndex = t;
-				}
-			}
+
 			Vertex ourV;
 			ourV.position = vec3(position.x, position.y, position.z);
 			ourV.normal = vec3(normal.x, normal.y, normal.z);
 
-			if (mesh->HasTextureCoords(texCoordIndex))
+			for (int t = 0; t < mesh->GetNumUVChannels(); t++)
 			{
-				aiVector3D texCoord = mesh->mTextureCoords[texCoordIndex][v];
-				ourV.texCoords0 = vec2(texCoord.x, texCoord.y);
+				if (mesh->HasTextureCoords(t))
+				{
+					aiVector3D texCoord = mesh->mTextureCoords[t][v];
+					ourV.texCoords0 = vec2(texCoord.x, texCoord.y);
+				}
 			}
-
 
 			verts.push_back(ourV);
 		}
