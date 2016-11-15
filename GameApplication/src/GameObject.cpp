@@ -26,9 +26,9 @@ GameObject::GameObject()
 	m_Sampler=0;
 	m_pParent = nullptr;
 
-	m_AmbientMaterialColour=vec4(0.0f,0.0f,0.0f,1.0f);
+	m_AmbientMaterialColour=vec4(0.2f,0.2f,0.2f,1.0f);
 	m_DiffuseMaterialColour=vec4(0.5f,0.5f,0.5f,1.0f);
-	m_SpecularMaterialColour=vec4(0.0f,0.0f,0.0f,1.0f);
+	m_SpecularMaterialColour=vec4(1.0f,1.0f,1.0f,1.0f);
 	m_SpecularMaterialPower=25.0f;
 }
 

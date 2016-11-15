@@ -16,15 +16,17 @@ uniform mat4 MVP;
 uniform mat4 Model;
 
 uniform vec3 lightDirection;
-uniform vec3 cameraPosition;
+uniform vec3 cameraPos;
 
 void main()
 {
-	mat3 tangentMatrix = mat3(normalize(vertexNormal), normalize(vertexTangents), normalize(vertexBinormals));
+	vec3 vertexNormalModel = normalize(Model*vec4(vertexNormal, 0.0f)).xyz;
+	vec3 vertexTangentsModel=normalize(Model*vec4(vertexTangents, 0.0f)).xyz;
+	vec3 vertexBinormalsModel=normalize(Model*vec4(vertexBinormals, 0.0f)).xyz;
+	mat3 tangentMatrix = mat3(vertexNormalModel, vertexTangentsModel, vertexBinormalsModel);
 
-	vec3 vertexNormalModel = normalize(Model*vec4(vertexNormals, 0.0f)).xyz;
 	vec3 worldPos = (Model*vec4(vertexPosition, 1.0)).xyz;
-	vec3 cameraDir = normalize(cameraPosition - worldPos);
+	vec3 cameraDir = normalize(cameraPos - worldPos);
 
 	lightDirectionOut = normalize(tangentMatrix * lightDirection);
 	cameraDirectionOut = normalize(tangentMatrix * cameraDir);

@@ -46,7 +46,7 @@ else(WIN32)
 
 	find_library(
 	  ASSIMP_LIBRARIES
-	  NAMES libassimp
+	  NAMES libassimp.dylib
 	  PATHS
 		/usr/lib/
 		/opt/local/lib/
