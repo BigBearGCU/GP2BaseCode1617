@@ -10,29 +10,29 @@ layout(location=5) in vec3 vertexBinormals;
 out vec4 vertexColoursOut;
 out vec2 vertexTextureCoordsOut;
 out vec3 vertexNormalOut;
-out vec3 lightDirectionOut;
 out vec3 cameraDirectionOut;
+out vec3 lightDirectionOut;
 
 uniform mat4 MVP;
 uniform mat4 Model;
 uniform vec3 lightDirection;
-uniform vec3 cameraPos=vec3(0.0f,0.0f,10.0f);
+uniform vec3 cameraPos;
 
 void main()
 {
-	mat3 tangentMatrix = mat3(normalize(vertexNormal), normalize(vertexTangents), normalize(vertexBinormals));
-
 	vec3 vertexNormalModel = normalize(Model*vec4(vertexNormal, 0.0f)).xyz;
+	vec3 vertexTangentsModel=normalize(Model*vec4(vertexTangents, 0.0f)).xyz;
+	vec3 vertexBinormalsModel=normalize(Model*vec4(vertexBinormals, 0.0f)).xyz;
+	mat3 tangentMatrix=mat3(vertexTangentsModel,vertexBinormalsModel,vertexNormalModel);
+
 	vec3 worldPos = (Model*vec4(vertexPosition, 1.0)).xyz;
 	vec3 cameraDir = normalize(cameraPos - worldPos);
 
-	lightDirectionOut = normalize(tangentMatrix * lightDirection);
 	cameraDirectionOut = normalize(tangentMatrix * cameraDir);
 	vertexNormalOut = normalize(tangentMatrix * vertexNormalModel);
+	lightDirectionOut=normalize(tangentMatrix * lightDirection);
 
 	gl_Position = MVP * vec4(vertexPosition, 1.0);
 	vertexColoursOut=vertexColours;
 	vertexTextureCoordsOut=vertexTextureCoords;
-
-
 }

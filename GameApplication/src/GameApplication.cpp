@@ -84,6 +84,8 @@ void GameApplication::initGraphics()
 		//The depth test to use
 		glDepthFunc( GL_LEQUAL );
 
+		glEnable(GL_FRAMEBUFFER_SRGB);
+
 
     setViewport((int)m_WindowWidth,(int)m_WindowHeight);
 
