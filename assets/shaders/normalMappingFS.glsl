@@ -38,6 +38,9 @@ void main()
 	vec4 ambientColour = ambientMaterialColour*ambientLightColour;
 	vec4 diffuseColour = diffuseTextureColour*diffuseLightColour*diffuseTerm;
 	vec4 specularColour = specularTextureColour*specularLightColour*specularTerm;
+	ambientColour.a=ambientMaterialColour.a;
+	diffuseColour.a=diffuseTextureColour.a;
+	specularColour.a=specularTextureColour.a;
 
 	FragColor = (ambientColour + diffuseColour+ specularColour);
 }
