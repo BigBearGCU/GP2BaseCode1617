@@ -43,9 +43,9 @@ void main()
 
 	vec3 lightDir = normalize(-lightDirectionOut);
 	//now use bumpnormals in reflectance calculate
-	float diffuseTerm = dot(bumpNormals, lightDir);
+	float diffuseTerm = max(dot(bumpNormals, lightDir),0.0f);
 	vec3 halfWayVec = normalize(cameraDirectionOut + lightDir);
-	float specularTerm = pow(dot(bumpNormals, halfWayVec), specularPower);
+	float specularTerm = pow(max(dot(bumpNormals, halfWayVec),0.0f), specularPower);
 
 	vec4 diffuseTextureColour = texture(diffuseSampler, correctedTexCoords);
 	vec4 specularTextureColour = texture(specularSampler, correctedTexCoords);
