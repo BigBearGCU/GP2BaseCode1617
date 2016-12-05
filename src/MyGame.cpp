@@ -31,6 +31,8 @@ void MyGame::initScene()
 	string normalTexturePath = ASSET_PATH + TEXTURE_PATH + "/bricks_norm.png";
 	string heightTexturePath=ASSET_PATH+TEXTURE_PATH+"/bricks_height.png";
 
+
+
 	shared_ptr<GameObject> testGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	testGO->loadShaders(vsParallaxFilename, fsParallaxFilename);
 	testGO->loadDiffuseTexture(diffuseTexturePath);
@@ -39,7 +41,7 @@ void MyGame::initScene()
 	testGO->loadHeightTexture(heightTexturePath);
 	testGO->setPosition(vec3(6.0f,0.0f,0.0f));
 	m_GameObjectList.push_back(testGO);
-	addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
+	//addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
 
 	testGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	testGO->loadShaders(vsBumpFilename, fsBumpFilename);
@@ -48,7 +50,7 @@ void MyGame::initScene()
 	testGO->loadNormalTexture(normalTexturePath);
 	testGO->setPosition(vec3(0.0f,0.0f,0.0f));
 	m_GameObjectList.push_back(testGO);
-	addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
+	//addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
 
 	testGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	testGO->loadShaders(vsTextureFilename, fsTextureFilename);
@@ -56,7 +58,7 @@ void MyGame::initScene()
 	testGO->loadSpecularTexture(specularTexturePath);
 	testGO->setPosition(vec3(-6.0f,0.0f,0.0f));
 	m_GameObjectList.push_back(testGO);
-	addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
+	//addKeyboardListner(shared_ptr<IKeyboardListener>(new DemoKeyListener(testGO.get())));
 
 	m_CameraPosition = vec3(0.0f, 0.0f, 20.0f);
 
